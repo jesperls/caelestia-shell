@@ -31,6 +31,10 @@ let
         hyprctl monitors -j | jq -r '.[] | select(.focused==true) | .name' | head -n1
       }
 
+      all_outputs() {
+        hyprctl monitors -j | jq -r '.[].name'
+      }
+
       pick_list() {
         local dir="$1"
         if [ ! -d "$dir" ]; then
@@ -42,6 +46,8 @@ let
       set_wallpaper() {
         local output="$1"
         local file="$2"
+        # Save current wallpaper path for persistence
+        echo "$file" > "$cache_dir/''${output//\//_}.current"
         # Preload the wallpaper, then set it
         hyprctl hyprpaper preload "$file" 2>/dev/null || true
         hyprctl hyprpaper wallpaper "$output,$file"
@@ -71,6 +77,22 @@ let
         return 0
       }
 
+      restore_wallpaper() {
+        local output="$1"
+        local current_file="$cache_dir/''${output//\//_}.current"
+        if [ -f "$current_file" ]; then
+          local file
+          read -r file < "$current_file" || true
+          if [ -f "$file" ]; then
+            echo "Restoring $output -> $file" >&2
+            set_wallpaper "$output" "$file"
+            return 0
+          fi
+        fi
+        # No saved wallpaper, set first from directory
+        next_wall_for_output "$output" "$default_dir/$output" || next_wall_for_output "$output" "$default_dir" || true
+      }
+
       cycle_focused() {
         local out
         out=$(focused_output)
@@ -85,19 +107,32 @@ let
         }
       }
 
-      if [ "$cmd" = "set" ]; then
-        output="''${2:-}"
-        file="''${3:-}"
-        if [ -z "$output" ] || [ -z "$file" ]; then
-          echo "usage: wallpaper-manager set <output> <file>" >&2
-          exit 1
-        fi
-        set_wallpaper "$output" "$file"
-        exit 0
-      fi
+      init_all() {
+        # Wait a moment for hyprpaper to be ready
+        sleep 0.5
+        for output in $(all_outputs); do
+          restore_wallpaper "$output"
+        done
+      }
 
-      # default: cycle wallpapers on the focused monitor
-      cycle_focused
+      case "$cmd" in
+        set)
+          output="''${2:-}"
+          file="''${3:-}"
+          if [ -z "$output" ] || [ -z "$file" ]; then
+            echo "usage: wallpaper-manager set <output> <file>" >&2
+            exit 1
+          fi
+          set_wallpaper "$output" "$file"
+          ;;
+        init)
+          init_all
+          ;;
+        *)
+          # default: cycle wallpapers on the focused monitor
+          cycle_focused
+          ;;
+      esac
     '';
   };
   hyprSettings = import ./hyprland/settings.nix {

@@ -9,6 +9,7 @@
 
   settings = {
     exec-once = [
+      "wallpaper-manager init"
       "solaar -w hide"
       "systemctl --user start hyprpolkitagent"
       "wl-paste --type text --watch cliphist store"
