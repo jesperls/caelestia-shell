@@ -1,7 +1,16 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
-  imports = [ ./hardware-configuration.nix ../../modules/nixos/bundle.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/nixos/bundle.nix
+  ];
 
   mySystem = {
     user = {
@@ -73,7 +82,6 @@
       };
     };
 
-    # Monitor configuration
     monitors = [
       "DP-3, 2560x1440@240, 0x0, 1"
       "DP-2, 2560x1440@144, 2560x0, 1"
@@ -82,33 +90,30 @@
       "Unknown-1, disable"
     ];
 
-    # Hardware features
     hardware.nvidia.enable = true;
     hardware.vial.enable = true;
 
-    # Services
     services.backup.enable = true;
     services.bluetooth.enable = true;
     services.flatpak.enable = true;
     services.audio = {
       enable = true;
       hybrid = {
-        enable = true;
+        enable = false;
         preferredNode = "alsa_input.usb-Logitech_A50-00.pro-input-0";
-        fallbackNode =
-          "alsa_input.usb-Focusrite_Scarlett_2i2_4th_Gen_S20KXTT350BDD8-00.pro-input-0";
+        fallbackNode = "alsa_input.usb-Focusrite_Scarlett_2i2_4th_Gen_S20KXTT350BDD8-00.pro-input-0";
         sinkName = "hybrid_voice_input";
       };
     };
 
-    # Programs
     programs.gaming.enable = true;
     programs.lutris.enable = true;
   };
 
-  # Home Manager configuration
   home-manager = {
-    users.${config.mySystem.user.username} = { imports = [ ./home.nix ]; };
+    users.${config.mySystem.user.username} = {
+      imports = [ ./home.nix ];
+    };
     useGlobalPkgs = true;
     useUserPackages = true;
     backupFileExtension = "hm-backup";

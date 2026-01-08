@@ -1,11 +1,28 @@
-{ config, pkgs, inputs, lib, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 
-let system = pkgs.stdenv.hostPlatform.system;
-in {
+let
+  system = pkgs.stdenv.hostPlatform.system;
+in
+{
+  # Environment variables to help uv work properly on NixOS
+  home.sessionVariables = {
+    # Tell uv to use the system Python as a fallback and help with linking
+    UV_PYTHON_PREFERENCE = "managed";
+    # Ensure pip/uv can find SSL certificates
+    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    # Help compiled extensions find libraries
+    LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:/run/current-system/sw/lib";
+  };
+
   home.packages = with pkgs; [
-    # Development
     git
-    nixfmt-classic
+    gh
+    nixfmt
+    nil
     vscode
     uv
     python314
@@ -13,43 +30,42 @@ in {
     dbeaver-bin
     cudaPackages.cudnn
 
-    # CLI & System Utilities
     nh
     jq
+    yq
+    fd
+    ripgrep
+    bat
     xdg-utils
     htop
+    btop
     ncdu
     p7zip
     parted
-    desync
     yt-dlp
+    playerctl
     inputs.deltatune.packages.${system}.default
 
-    # Wayland & Desktop Tools
     grim
     slurp
-    slop
     wl-clipboard
     cliphist
+    wofi
     gsettings-desktop-schemas
     glib
     wlogout
     networkmanagerapplet
     mission-center
-    swww
 
-    # Audio & Bluetooth
     pavucontrol
     pulseaudio
-    bluez-tools
     qpwgraph
     overskride
+    easyeffects
 
-    # Peripherals
     solaar
     vial
 
-    # Apps
     inputs.zen-browser.packages.${system}.twilight
     vesktop
     obsidian
@@ -62,16 +78,15 @@ in {
     heroic
     qbittorrent
 
-    # File Management & Viewers
     file-roller
     unzip
     zip
     unrar
     evince
     feh
+    imv
     adwaita-icon-theme
 
-    # Windows Compatibility
     wineWowPackages.stable
     winetricks
   ];

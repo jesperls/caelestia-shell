@@ -1,9 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.mySystem.programs.gaming;
-in {
+let
+  cfg = config.mySystem.programs.gaming;
+in
+{
   options.mySystem.programs.gaming = {
     enable = mkEnableOption "Gaming configuration";
   };
@@ -18,8 +25,8 @@ in {
       gamescopeSession.enable = true;
 
       package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs; [
+        extraPkgs =
+          pkgs: with pkgs; [
             xorg.libXcursor
             xorg.libXi
             xorg.libXinerama
@@ -44,7 +51,11 @@ in {
     programs.gamemode = {
       enable = true;
       enableRenice = true;
-      settings = { general = { renice = 10; }; };
+      settings = {
+        general = {
+          renice = 10;
+        };
+      };
     };
 
     programs.gamescope = {
@@ -52,6 +63,9 @@ in {
       capSysNice = false;
     };
 
-    environment.systemPackages = with pkgs; [ mangohud gamemode ];
+    environment.systemPackages = with pkgs; [
+      mangohud
+      gamemode
+    ];
   };
 }

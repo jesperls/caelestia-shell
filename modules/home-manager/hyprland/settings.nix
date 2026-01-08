@@ -1,8 +1,14 @@
-{ config, pkgs, lib, osConfig, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
+{
 
   settings = {
     exec-once = [
-      "systemctl --user start swww"
       "solaar -w hide"
       "systemctl --user start hyprpolkitagent"
       "wl-paste --type text --watch cliphist store"
@@ -14,14 +20,9 @@
       gaps_in = osConfig.mySystem.theme.gaps.inner;
       gaps_out = osConfig.mySystem.theme.gaps.outer;
       border_size = osConfig.mySystem.theme.borders;
-      "col.active_border" = "rgba(${
-          lib.removePrefix "#" osConfig.mySystem.theme.colors.accent
-        }ee) rgba(${
-          lib.removePrefix "#" osConfig.mySystem.theme.colors.accent2
-        }ee) 45deg";
-      "col.inactive_border" = "rgba(${
-          lib.removePrefix "#" osConfig.mySystem.theme.colors.surface
-        }aa)";
+      "col.active_border" =
+        "rgba(${lib.removePrefix "#" osConfig.mySystem.theme.colors.accent}ee) rgba(${lib.removePrefix "#" osConfig.mySystem.theme.colors.accent2}ee) 45deg";
+      "col.inactive_border" = "rgba(${lib.removePrefix "#" osConfig.mySystem.theme.colors.surface}aa)";
       layout = "dwindle";
       resize_on_border = true;
     };
@@ -36,7 +37,9 @@
         ignore_opacity = true;
         xray = true;
       };
-      shadow = { enabled = false; };
+      shadow = {
+        enabled = false;
+      };
     };
 
     animations = {
@@ -49,22 +52,22 @@
       animation = [
         "windows,1,3,easeOutQuint,slide"
         "windowsOut,1,3,easeInOutQuint,slide"
-        #"border,1,8,easeInOutQuint"
-        #"borderangle,1,30,easeInOutQuint"
         "fade,1,4,easeInOutQuint"
-        #"workspaces,1,8,easeOutQuint,slide"
-        #"specialWorkspace,1,8,easeOutQuint,slide"
       ];
     };
 
     input = {
       kb_layout = osConfig.mySystem.system.keyboardLayout;
       follow_mouse = 1;
-      touchpad = { natural_scroll = true; };
+      touchpad = {
+        natural_scroll = true;
+      };
       sensitivity = 0;
     };
 
-    cursor = { no_hardware_cursors = true; };
+    cursor = {
+      no_hardware_cursors = true;
+    };
 
     dwindle = {
       pseudotile = true;

@@ -1,9 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.mySystem.hardware.vial;
-in {
+let
+  cfg = config.mySystem.hardware.vial;
+in
+{
   options.mySystem.hardware.vial = {
     enable = mkEnableOption "Vial keyboard configuration support";
   };

@@ -1,9 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.mySystem.hardware.nvidia;
-in {
+let
+  cfg = config.mySystem.hardware.nvidia;
+in
+{
   options.mySystem.hardware.nvidia = {
     enable = mkEnableOption "Nvidia drivers";
   };

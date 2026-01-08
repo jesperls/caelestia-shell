@@ -5,7 +5,6 @@
     enable = true;
 
     defaultApplications = {
-      # Web browsers and URLs
       "text/html" = "zen.desktop";
       "x-scheme-handler/http" = "zen.desktop";
       "x-scheme-handler/https" = "zen.desktop";
@@ -15,7 +14,6 @@
       "x-scheme-handler/ftp" = "zen.desktop";
       "x-scheme-handler/file" = "zen.desktop";
 
-      # Text files and code
       "text/plain" = "gedit.desktop";
       "text/x-readme" = "code.desktop";
       "text/markdown" = "code.desktop";
@@ -37,7 +35,6 @@
       "application/x-desktop" = "gedit.desktop";
       "application/x-shellscript" = "code.desktop";
 
-      # Images
       "image/jpeg" = "feh.desktop";
       "image/jpg" = "feh.desktop";
       "image/png" = "feh.desktop";
@@ -47,27 +44,21 @@
       "image/bmp" = "feh.desktop";
       "image/tiff" = "feh.desktop";
 
-      # PDFs
       "application/pdf" = "evince.desktop";
       "application/postscript" = "evince.desktop";
 
-      # Office documents
       "application/vnd.oasis.opendocument.text" = "libreoffice-writer.desktop";
-      "application/vnd.oasis.opendocument.spreadsheet" =
-        "libreoffice-calc.desktop";
-      "application/vnd.oasis.opendocument.presentation" =
-        "libreoffice-impress.desktop";
+      "application/vnd.oasis.opendocument.spreadsheet" = "libreoffice-calc.desktop";
+      "application/vnd.oasis.opendocument.presentation" = "libreoffice-impress.desktop";
       "application/msword" = "libreoffice-writer.desktop";
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
         "libreoffice-writer.desktop";
       "application/vnd.ms-excel" = "libreoffice-calc.desktop";
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
-        "libreoffice-calc.desktop";
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = "libreoffice-calc.desktop";
       "application/vnd.ms-powerpoint" = "libreoffice-impress.desktop";
       "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
         "libreoffice-impress.desktop";
 
-      # Archives
       "application/zip" = "file-roller.desktop";
       "application/x-rar-compressed" = "file-roller.desktop";
       "application/x-tar" = "file-roller.desktop";
@@ -75,7 +66,6 @@
       "application/gzip" = "file-roller.desktop";
       "application/x-7z-compressed" = "file-roller.desktop";
 
-      # Audio
       "audio/mpeg" = "rhythmbox.desktop";
       "audio/ogg" = "rhythmbox.desktop";
       "audio/wav" = "rhythmbox.desktop";
@@ -83,7 +73,6 @@
       "audio/aac" = "rhythmbox.desktop";
       "audio/x-mp3" = "rhythmbox.desktop";
 
-      # Video
       "video/mp4" = "mpv.desktop";
       "video/x-msvideo" = "mpv.desktop";
       "video/quicktime" = "mpv.desktop";
@@ -94,10 +83,8 @@
       "video/x-ms-wmv" = "mpv.desktop";
       "video/x-flv" = "mpv.desktop";
 
-      # File manager
       "inode/directory" = "thunar.desktop";
 
-      # Chat/Communication (Discord)
       "x-scheme-handler/discord" = "vesktop.desktop";
     };
 

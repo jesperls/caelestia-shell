@@ -1,7 +1,24 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+        editor = false;
+      };
+      efi.canTouchEfiVariables = true;
+      timeout = 3;
+    };
+
+    kernelPackages = pkgs.linuxPackages_zen;
+    kernelParams = [
+      "quiet"
+      "splash"
+      "nowatchdog"
+    ];
+    plymouth.enable = true;
+    tmp.useTmpfs = true;
+  };
 }

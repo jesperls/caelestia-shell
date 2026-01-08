@@ -1,9 +1,22 @@
-{ config, pkgs, osConfig, lib, ... }:
+{
+  config,
+  pkgs,
+  osConfig,
+  lib,
+  ...
+}:
 
 let
   wallpaperManager = pkgs.writeShellApplication {
     name = "wallpaper-manager";
-    runtimeInputs = with pkgs; [ swww hyprland jq findutils coreutils gnused ];
+    runtimeInputs = with pkgs; [
+      hyprpaper
+      hyprland
+      jq
+      findutils
+      coreutils
+      gnused
+    ];
     text = ''
       set -euo pipefail
 
@@ -13,12 +26,6 @@ let
       mkdir -p "$cache_dir"
 
       cmd="''${1:-cycle}"
-
-      ensure_daemon() {
-        if ! swww query >/dev/null 2>&1; then
-          swww-daemon --format xrgb >/dev/null 2>&1 || swww-daemon --format rgb >/dev/null 2>&1
-        fi
-      }
 
       focused_output() {
         hyprctl monitors -j | jq -r '.[] | select(.focused==true) | .name' | head -n1
@@ -30,6 +37,16 @@ let
           return 1
         fi
         find -L "$dir" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' -o -iname '*.bmp' \) | LC_COLLATE=C sort
+      }
+
+      set_wallpaper() {
+        local output="$1"
+        local file="$2"
+        # Preload the wallpaper, then set it
+        hyprctl hyprpaper preload "$file" 2>/dev/null || true
+        hyprctl hyprpaper wallpaper "$output,$file"
+        # Unload unused wallpapers to save memory
+        hyprctl hyprpaper unload unused 2>/dev/null || true
       }
 
       next_wall_for_output() {
@@ -50,12 +67,11 @@ let
 
         local file="''${files[$next_idx]}"
         echo "$output -> $file" >&2
-        swww img -o "$output" "$file" --transition-type grow --transition-duration 0.7 --transition-fps 60
+        set_wallpaper "$output" "$file"
         return 0
       }
 
       cycle_focused() {
-        ensure_daemon
         local out
         out=$(focused_output)
         if [ -z "$out" ]; then
@@ -76,8 +92,7 @@ let
           echo "usage: wallpaper-manager set <output> <file>" >&2
           exit 1
         fi
-        ensure_daemon
-        swww img -o "$output" "$file" --transition-type grow --transition-duration 0.7 --transition-fps 60
+        set_wallpaper "$output" "$file"
         exit 0
       fi
 
@@ -85,9 +100,16 @@ let
       cycle_focused
     '';
   };
-  hyprSettings =
-    import ./hyprland/settings.nix { inherit config pkgs lib osConfig; };
-in {
+  hyprSettings = import ./hyprland/settings.nix {
+    inherit
+      config
+      pkgs
+      lib
+      osConfig
+      ;
+  };
+in
+{
   wayland.windowManager.hyprland = {
     enable = true;
     settings = lib.mkMerge [
@@ -98,40 +120,33 @@ in {
     ];
   };
 
-  # Hyprland portal configuration for screensharing
   xdg.configFile."hypr/xdph.conf".text = ''
     screencopy {
       allow_token_by_default = true
     }
   '';
 
-  systemd.user.services.swww-daemon = {
-    Unit = {
-      Description = "swww wallpaper daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "on";
+      splash = false;
     };
-    Service = {
-      ExecStart = "${pkgs.swww}/bin/swww-daemon --format xrgb";
-      Restart = "on-failure";
-    };
-    Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 
-  # Hyprland-related user packages
-  home.packages = (with pkgs; [
-    # Hyprland ecosystem packages
-    hyprland-protocols
-    hyprwayland-scanner
-    hyprutils
-    hyprgraphics
-    hyprlang
-    hyprcursor
-    aquamarine
-    hyprpolkitagent
+  home.packages =
+    (with pkgs; [
+      hyprland-protocols
+      hyprwayland-scanner
+      hyprutils
+      hyprgraphics
+      hyprlang
+      hyprcursor
+      aquamarine
+      hyprpolkitagent
 
-    # Desktop portals
-    xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
-  ]) ++ [ wallpaperManager ];
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ])
+    ++ [ wallpaperManager ];
 }

@@ -1,9 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
-let cfg = config.mySystem.services.bluetooth;
-in {
+let
+  cfg = config.mySystem.services.bluetooth;
+in
+{
   options.mySystem.services.bluetooth = {
     enable = mkEnableOption "Bluetooth support";
   };
