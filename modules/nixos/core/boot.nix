@@ -5,12 +5,12 @@
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = 10;
+        configurationLimit = 5;
         editor = false;
         consoleMode = "max";
       };
       efi.canTouchEfiVariables = true;
-      timeout = 3;
+      timeout = 1;
     };
 
     kernelPackages = pkgs.linuxPackages_zen;
@@ -18,6 +18,10 @@
       "quiet"
       "splash"
       "nowatchdog"
+      "loglevel=3"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
       "video=DP-3:2560x1440@240"
       "video=DP-2:2560x1440@144"
       "video=HDMI-A-1:1920x1080@60"
@@ -30,6 +34,7 @@
     };
 
     consoleLogLevel = 0;
+    initrd.verbose = false;
 
     tmp.useTmpfs = true;
   };

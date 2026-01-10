@@ -49,6 +49,8 @@
       gp = "git push";
       gl = "git log --oneline --graph";
       gd = "git diff";
+
+      webcam = "scrcpy --video-source=camera --camera-facing=back --camera-size=1920x1080 --v4l2-sink=/dev/video2 --no-audio --no-playback";
     };
 
     initContent = ''

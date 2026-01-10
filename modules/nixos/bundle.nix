@@ -11,6 +11,7 @@
 
     ./hardware/nvidia.nix
     ./hardware/vial.nix
+    ./hardware/webcam.nix
 
     ./services/audio.nix
     ./services/bluetooth.nix

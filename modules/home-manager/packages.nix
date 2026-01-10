@@ -45,6 +45,7 @@ in
     yt-dlp
     playerctl
     inputs.deltatune.packages.${system}.default
+    scrcpy
 
     grim
     slurp
@@ -64,9 +65,8 @@ in
     easyeffects
 
     solaar
-    vial
 
-    inputs.zen-browser.packages.${system}.twilight
+    inputs.zen-browser.packages.${system}.beta
     vesktop
     obsidian
     libreoffice

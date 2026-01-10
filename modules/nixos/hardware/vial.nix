@@ -23,5 +23,9 @@ in
       # Generalized VIA rule - Allows access to all hidraw devices for VIA compatibility
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
     '';
+
+    environment.systemPackages = with pkgs; [
+      vial
+    ];
   };
 }
