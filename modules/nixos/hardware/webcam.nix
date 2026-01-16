@@ -13,13 +13,13 @@ in
 {
   options.mySystem.hardware.webcam = {
     enable = mkEnableOption "v4l2loopback virtual webcam (for phone as webcam via scrcpy)";
-    
+
     videoNumber = mkOption {
       type = types.int;
       default = 2;
       description = "Video device number for the virtual webcam";
     };
-    
+
     cardLabel = mkOption {
       type = types.str;
       default = "Scrcpy Webcam";

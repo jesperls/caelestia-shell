@@ -6,9 +6,6 @@ let
     prePatch = (old.prePatch or "") + ''
       substituteInPlace services/GameMode.qml \
         --replace '"general:border_size": 1' '"general:border_size": 0'
-      substituteInPlace services/Recorder.qml \
-        --replace 'property list<string> startArgs' 'property list<string> startArgs: []' \
-        --replace 'function start(extraArgs: list<string>): void {' 'function start(extraArgs = []) {'
       substituteInPlace services/Notifs.qml \
         --replace 'notif.tracked = true;' 'const app = (notif.appName || "").toLowerCase(); if (app.includes("spotify")) return; notif.tracked = true;'
     '';
