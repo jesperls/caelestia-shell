@@ -8,8 +8,10 @@
 {
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "performance";
+    cpuFreqGovernor = "schedutil";
   };
+
+  services.power-profiles-daemon.enable = true;
 
   hardware.cpu.intel.updateMicrocode = true;
 

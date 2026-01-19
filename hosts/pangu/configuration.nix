@@ -93,6 +93,7 @@
     hardware.nvidia.enable = true;
     hardware.vial.enable = true;
     hardware.webcam.enable = true;
+    hardware.fancontrol.enable = true;
 
     services.backup.enable = true;
     services.bluetooth.enable = true;
