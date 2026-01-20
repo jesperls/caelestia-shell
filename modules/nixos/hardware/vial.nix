@@ -5,17 +5,15 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.hardware.vial;
 in
 {
   options.mySystem.hardware.vial = {
-    enable = mkEnableOption "Vial keyboard configuration support";
+    enable = lib.mkEnableOption "Vial keyboard configuration support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.udev.extraRules = ''
       # Vial keyboards - Universal rule for any device with Vial firmware
       KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"

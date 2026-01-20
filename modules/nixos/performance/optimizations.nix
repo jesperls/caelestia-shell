@@ -6,11 +6,7 @@
 }:
 
 {
-  powerManagement = {
-    enable = true;
-    cpuFreqGovernor = "schedutil";
-  };
-
+  powerManagement.enable = true;
   services.power-profiles-daemon.enable = true;
 
   hardware.cpu.intel.updateMicrocode = true;

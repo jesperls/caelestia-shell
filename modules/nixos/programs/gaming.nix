@@ -5,17 +5,15 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.programs.gaming;
 in
 {
   options.mySystem.programs.gaming = {
-    enable = mkEnableOption "Gaming configuration";
+    enable = lib.mkEnableOption "Gaming configuration";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.steam = {
       enable = true;
       remotePlay.openFirewall = true;

@@ -1,5 +1,14 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  osConfig,
+  lib,
+  ...
+}:
 
+let
+  theme = osConfig.mySystem.theme.colors;
+in
 {
   programs.starship = {
     enable = true;
@@ -12,11 +21,11 @@
         error_symbol = "[➜](bold red)";
       };
       directory = {
-        style = "bold lavender";
+        style = "bold ${theme.accent}";
         truncation_length = 4;
       };
       git_branch = {
-        style = "bold mauve";
+        style = "bold ${theme.accent2}";
         format = "[$symbol$branch]($style) ";
       };
       git_status = {
@@ -30,7 +39,7 @@
       };
       cmd_duration = {
         format = "[$duration]($style)";
-        style = "yellow";
+        style = "${theme.muted}";
         min_time = 2000;
       };
     };
@@ -52,17 +61,17 @@
       "--inline-info"
     ];
     colors = {
-      fg = "#e6e3e8";
-      bg = "#0f1117";
-      hl = "#d47fa6";
-      "fg+" = "#e6e3e8";
-      "bg+" = "#191b21";
-      "hl+" = "#e3b17a";
-      info = "#b3adb9";
-      prompt = "#d47fa6";
-      pointer = "#e3b17a";
-      marker = "#d47fa6";
-      spinner = "#d47fa6";
+      fg = theme.text;
+      bg = theme.background;
+      hl = theme.accent;
+      "fg+" = theme.text;
+      "bg+" = theme.surface;
+      "hl+" = theme.accent2;
+      info = theme.muted;
+      prompt = theme.accent;
+      pointer = theme.accent2;
+      marker = theme.accent;
+      spinner = theme.accent;
     };
   };
 

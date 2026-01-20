@@ -23,6 +23,17 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # Hyprland utilities
+    hyprland-protocols
+    hyprwayland-scanner
+    hyprutils
+    hyprgraphics
+    hyprlang
+    hyprcursor
+    aquamarine
+    hyprpolkitagent
+
+    # Screen/display tools
     pamixer
     brightnessctl
     gpu-screen-recorder

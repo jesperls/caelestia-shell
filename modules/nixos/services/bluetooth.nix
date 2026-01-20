@@ -1,21 +1,18 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
-
-with lib;
 
 let
   cfg = config.mySystem.services.bluetooth;
 in
 {
   options.mySystem.services.bluetooth = {
-    enable = mkEnableOption "Bluetooth support";
+    enable = lib.mkEnableOption "Bluetooth support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

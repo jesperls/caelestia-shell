@@ -5,18 +5,16 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.services.backup;
   user = config.mySystem.user;
 in
 {
   options.mySystem.services.backup = {
-    enable = mkEnableOption "Home Manager backup service";
+    enable = lib.mkEnableOption "Home Manager backup service";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     system.activationScripts.manageHomeManagerBackups = lib.stringAfter [ "users" ] ''
       BACKUP_DIR="/home/${user.username}/.config/home-manager-backups"
       echo "Managing home-manager backup files..."

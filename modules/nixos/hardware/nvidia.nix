@@ -5,17 +5,15 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.hardware.nvidia;
 in
 {
   options.mySystem.hardware.nvidia = {
-    enable = mkEnableOption "Nvidia drivers";
+    enable = lib.mkEnableOption "Nvidia drivers";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware.graphics = {
       enable = true;
       enable32Bit = true;

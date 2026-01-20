@@ -171,18 +171,7 @@ in
 
   home.packages =
     (with pkgs; [
-      hyprland-protocols
-      hyprwayland-scanner
-      hyprutils
-      hyprgraphics
-      hyprlang
-      hyprcursor
-      aquamarine
-      hyprpolkitagent
       hyprpicker
-
-      xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
     ])
     ++ [ wallpaperManager ];
 }

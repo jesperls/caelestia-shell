@@ -11,11 +11,4 @@
     liberation_ttf
     dejavu_fonts
   ];
-
-  environment.systemPackages = with pkgs; [
-    papirus-icon-theme
-    hicolor-icon-theme
-    adwaita-icon-theme
-    libappindicator-gtk3
-  ];
 }

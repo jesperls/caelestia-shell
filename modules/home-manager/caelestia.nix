@@ -35,8 +35,9 @@ in
       };
       paths.wallpaperDir = "~/Pictures/Wallpapers";
       bar.status = {
-        showBattery = false;
+        showBattery = true;
         showAudio = true;
+        showWifi = false;
       };
       general = {
         apps = {

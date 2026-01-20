@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.sessionVariables = {
-    PHONEMIZER_ESPEAK_LIBRARY = "${pkgs.espeak-ng}/lib/libespeak-ng.so";
-  };
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;

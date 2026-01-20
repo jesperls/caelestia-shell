@@ -5,36 +5,34 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.services.audio;
 in
 {
   options.mySystem.services.audio = {
-    enable = mkEnableOption "audio configuration";
+    enable = lib.mkEnableOption "audio configuration";
 
     hybrid = {
-      enable = mkEnableOption "hybrid audio source switching";
+      enable = lib.mkEnableOption "hybrid audio source switching";
 
-      preferredNode = mkOption {
-        type = types.str;
+      preferredNode = lib.mkOption {
+        type = lib.types.str;
         description = "The PulseAudio/PipeWire name of the preferred input node.";
       };
 
-      fallbackNode = mkOption {
-        type = types.str;
+      fallbackNode = lib.mkOption {
+        type = lib.types.str;
         description = "The PulseAudio/PipeWire name of the fallback input node.";
       };
 
-      sinkName = mkOption {
-        type = types.str;
+      sinkName = lib.mkOption {
+        type = lib.types.str;
         description = "The name of the hybrid voice sink.";
       };
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.pulseaudio.enable = false;
     security.rtkit.enable = true;
 
@@ -48,7 +46,7 @@ in
       pulse.enable = true;
     };
 
-    services.pipewire.extraConfig.pipewire."99-hybrid-voice" = mkIf cfg.hybrid.enable {
+    services.pipewire.extraConfig.pipewire."99-hybrid-voice" = lib.mkIf cfg.hybrid.enable {
       "context.modules" = [
         {
           name = "libpipewire-module-loopback";
@@ -69,62 +67,64 @@ in
       ];
     };
 
-    environment.etc."wireplumber/wireplumber.conf.d/51-rename-devices.conf" = mkIf cfg.hybrid.enable {
-      text = ''
-        monitor.alsa.rules = [
-          {
-            matches = [
+    environment.etc."wireplumber/wireplumber.conf.d/51-rename-devices.conf" =
+      lib.mkIf cfg.hybrid.enable
+        {
+          text = ''
+            monitor.alsa.rules = [
               {
-                node.name = "alsa_output.usb-Logitech_A50-00.pro-output-0"
+                matches = [
+                  {
+                    node.name = "alsa_output.usb-Logitech_A50-00.pro-output-0"
+                  }
+                ]
+                actions = {
+                  update-props = {
+                    node.description = "A50 Pro Voice"
+                  }
+                }
+              }
+              {
+                matches = [
+                  {
+                    node.name = "alsa_output.usb-Logitech_A50-00.pro-output-1"
+                  }
+                ]
+                actions = {
+                  update-props = {
+                    node.description = "A50 Pro Game"
+                  }
+                }
+              }
+              {
+                matches = [
+                  {
+                    node.name = "alsa_input.usb-Logitech_A50-00.pro-input-0"
+                  }
+                ]
+                actions = {
+                  update-props = {
+                    node.description = "A50 Pro Main"
+                  }
+                }
+              }
+              {
+                matches = [
+                  {
+                    node.name = "alsa_input.usb-Logitech_A50-00.pro-input-1"
+                  }
+                ]
+                actions = {
+                  update-props = {
+                    node.description = "A50 Pro Monitor"
+                  }
+                }
               }
             ]
-            actions = {
-              update-props = {
-                node.description = "A50 Pro Voice"
-              }
-            }
-          }
-          {
-            matches = [
-              {
-                node.name = "alsa_output.usb-Logitech_A50-00.pro-output-1"
-              }
-            ]
-            actions = {
-              update-props = {
-                node.description = "A50 Pro Game"
-              }
-            }
-          }
-          {
-            matches = [
-              {
-                node.name = "alsa_input.usb-Logitech_A50-00.pro-input-0"
-              }
-            ]
-            actions = {
-              update-props = {
-                node.description = "A50 Pro Main"
-              }
-            }
-          }
-          {
-            matches = [
-              {
-                node.name = "alsa_input.usb-Logitech_A50-00.pro-input-1"
-              }
-            ]
-            actions = {
-              update-props = {
-                node.description = "A50 Pro Monitor"
-              }
-            }
-          }
-        ]
-      '';
-    };
+          '';
+        };
 
-    systemd.user.services.audio-auto-switch = mkIf cfg.hybrid.enable {
+    systemd.user.services.audio-auto-switch = lib.mkIf cfg.hybrid.enable {
       description = "Audio Auto Switcher Service";
       wantedBy = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];

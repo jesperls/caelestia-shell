@@ -1,67 +1,65 @@
-{ lib, pkgs, ... }:
-
-with lib;
+{ lib, ... }:
 
 {
   options.mySystem = {
     # User configuration
     user = {
-      username = mkOption {
-        type = types.str;
+      username = lib.mkOption {
+        type = lib.types.str;
         description = "The username of the primary user.";
       };
-      fullName = mkOption {
-        type = types.str;
+      fullName = lib.mkOption {
+        type = lib.types.str;
         description = "The full name of the primary user.";
       };
-      email = mkOption {
-        type = types.str;
+      email = lib.mkOption {
+        type = lib.types.str;
         description = "The email of the primary user.";
       };
     };
 
     # System configuration
     system = {
-      locale = mkOption {
-        type = types.str;
-        default = "en_US.UTF-8";
+      locale = lib.mkOption {
+        type = lib.types.str;
+        default = lib.mkDefault "en_US.UTF-8";
         description = "The system locale.";
       };
-      timeZone = mkOption {
-        type = types.str;
-        default = "Europe/Stockholm";
+      timeZone = lib.mkOption {
+        type = lib.types.str;
+        default = lib.mkDefault "Europe/Stockholm";
         description = "The system timezone.";
       };
-      keyboardLayout = mkOption {
-        type = types.str;
-        default = "se";
+      keyboardLayout = lib.mkOption {
+        type = lib.types.str;
+        default = lib.mkDefault "se";
         description = "The keyboard layout.";
       };
-      consoleKeyMap = mkOption {
-        type = types.str;
-        default = "sv-latin1";
+      consoleKeyMap = lib.mkOption {
+        type = lib.types.str;
+        default = lib.mkDefault "sv-latin1";
         description = "The console key map.";
       };
-      extraLocaleSettings = mkOption {
-        type = types.attrsOf types.str;
+      extraLocaleSettings = lib.mkOption {
+        type = lib.types.attrsOf lib.types.str;
         default = { };
         description = "Extra locale settings.";
       };
-      hostName = mkOption {
-        type = types.str;
-        default = "nixos";
+      hostName = lib.mkOption {
+        type = lib.types.str;
+        default = lib.mkDefault "nixos";
         description = "The system hostname.";
       };
-      stateVersion = mkOption {
-        type = types.str;
-        default = "25.05";
+      stateVersion = lib.mkOption {
+        type = lib.types.str;
+        default = lib.mkDefault "25.05";
         description = "The system state version.";
       };
     };
 
     # Monitor configuration
-    monitors = mkOption {
-      type = types.listOf types.str;
+    monitors = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [ ];
       description = "List of monitor configurations for Hyprland.";
     };

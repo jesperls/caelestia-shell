@@ -5,8 +5,6 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.programs.lutris;
 
@@ -82,18 +80,17 @@ let
 in
 {
   options.mySystem.programs.lutris = {
-    enable = mkEnableOption "Lutris with common gaming dependencies";
+    enable = lib.mkEnableOption "Lutris with common gaming dependencies";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     hardware.graphics = {
-      enable = mkDefault true;
-      enable32Bit = mkDefault true;
+      enable = lib.mkDefault true;
+      enable32Bit = lib.mkDefault true;
     };
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
       lutrisWithDeps
-      adwaita-icon-theme
     ];
   };
 }

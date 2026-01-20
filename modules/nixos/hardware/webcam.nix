@@ -5,29 +5,27 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.hardware.webcam;
 in
 {
   options.mySystem.hardware.webcam = {
-    enable = mkEnableOption "v4l2loopback virtual webcam (for phone as webcam via scrcpy)";
+    enable = lib.mkEnableOption "v4l2loopback virtual webcam (for phone as webcam via scrcpy)";
 
-    videoNumber = mkOption {
-      type = types.int;
+    videoNumber = lib.mkOption {
+      type = lib.types.int;
       default = 2;
       description = "Video device number for the virtual webcam";
     };
 
-    cardLabel = mkOption {
-      type = types.str;
+    cardLabel = lib.mkOption {
+      type = lib.types.str;
       default = "Scrcpy Webcam";
       description = "Label for the virtual webcam device";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     boot.extraModulePackages = with config.boot.kernelPackages; [
       v4l2loopback
     ];

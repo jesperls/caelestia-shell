@@ -5,17 +5,15 @@
   ...
 }:
 
-with lib;
-
 let
   cfg = config.mySystem.hardware.fancontrol;
 in
 {
   options.mySystem.hardware.fancontrol = {
-    enable = mkEnableOption "Fan control and cooling management";
+    enable = lib.mkEnableOption "Fan control and cooling management";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.coolercontrol.enable = true;
 
     environment.systemPackages = with pkgs; [

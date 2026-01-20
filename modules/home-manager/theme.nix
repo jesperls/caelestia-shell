@@ -49,13 +49,6 @@ in
     pkgs.libappindicator-gtk3
   ];
 
-  home.sessionVariables = {
-    GTK_THEME = "${theme.gtk.theme.name}:dark";
-    XCURSOR_THEME = theme.gtk.cursorTheme.name;
-    XCURSOR_SIZE = builtins.toString theme.gtk.cursorTheme.size;
-    ICON_THEME = theme.gtk.iconTheme.name;
-  };
-
   dconf.settings."org/gnome/desktop/interface" = {
     icon-theme = theme.gtk.iconTheme.name;
     gtk-theme = theme.gtk.theme.name;
