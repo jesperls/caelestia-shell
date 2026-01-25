@@ -61,9 +61,5 @@ in
       capSysNice = false;
     };
 
-    environment.systemPackages = with pkgs; [
-      mangohud
-      gamemode
-    ];
   };
 }

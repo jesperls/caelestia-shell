@@ -20,7 +20,6 @@ in
     ydotool
 
     # === CLI Utilities ===
-    nh
     jq
     yq
     fd
@@ -71,6 +70,8 @@ in
     prismlauncher
     heroic
     qbittorrent
+    antigravity
+    protontricks
 
     # === File Management ===
     file-roller

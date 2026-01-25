@@ -57,4 +57,9 @@
     freeSwapThreshold = 10;
     enableNotifications = true;
   };
+
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
 }

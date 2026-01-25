@@ -96,8 +96,8 @@ in
     enable = true;
     themeFile = "Catppuccin-Mocha";
     settings = {
-      font_family = "JetBrainsMono Nerd Font";
-      font_size = "11";
+      font_family = osConfig.mySystem.theme.fonts.monospace;
+      font_size = builtins.toString osConfig.mySystem.theme.fonts.size;
       adjust_line_height = "120%";
       window_padding_width = 10;
       confirm_os_window_close = 0;

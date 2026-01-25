@@ -180,6 +180,26 @@ in
             description = "Qt platform theme configuration.";
           };
         };
+
+        fonts = {
+          monospace = mkOption {
+            type = types.str;
+            default = "JetBrainsMono Nerd Font";
+            description = "Monospace font for terminals and code editors.";
+          };
+
+          sans = mkOption {
+            type = types.str;
+            default = "Noto Sans";
+            description = "Sans-serif font for UI elements.";
+          };
+
+          size = mkOption {
+            type = types.int;
+            default = 11;
+            description = "Default font size.";
+          };
+        };
       };
     };
 
