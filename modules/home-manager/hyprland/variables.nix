@@ -1,6 +1,6 @@
 { ... }:
 {
   "$terminal" = "kitty";
-  "$browser" = "zen";
+  "$browser" = "firefox";
   "$mainMod" = "SUPER";
 }

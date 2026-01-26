@@ -11,8 +11,8 @@ in
 {
   home.sessionVariables = {
     # === Browser ===
-    BROWSER = "zen";
-    DEFAULT_BROWSER = "zen";
+    BROWSER = "firefox";
+    DEFAULT_BROWSER = "firefox";
 
     # === Wayland / Display ===
     GDK_BACKEND = "wayland,x11,*";

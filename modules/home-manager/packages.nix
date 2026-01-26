@@ -52,7 +52,6 @@ in
     pulseaudio
     qpwgraph
     overskride
-    easyeffects
     espeak
 
     # === Hardware ===
@@ -60,7 +59,6 @@ in
     scrcpy
 
     # === Applications ===
-    inputs.zen-browser.packages.${system}.beta
     obsidian
     libreoffice
     gedit

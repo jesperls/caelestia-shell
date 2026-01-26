@@ -15,5 +15,7 @@
     ./spicetify.nix
     ./deltatune.nix
     ./obs.nix
+    ./easyeffects.nix
+    ./firefox.nix
   ];
 }
