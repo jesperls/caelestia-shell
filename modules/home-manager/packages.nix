@@ -32,6 +32,7 @@ in
     yt-dlp
     playerctl
     trash-cli
+    gemini-cli
 
     # === Screen/Display ===
     grim

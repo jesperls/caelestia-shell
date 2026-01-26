@@ -98,15 +98,7 @@
     services.backup.enable = true;
     services.bluetooth.enable = true;
     services.flatpak.enable = true;
-    services.audio = {
-      enable = true;
-      hybrid = {
-        enable = false;
-        preferredNode = "alsa_input.usb-Logitech_A50-00.pro-input-0";
-        fallbackNode = "alsa_input.usb-Focusrite_Scarlett_2i2_4th_Gen_S20KXTT350BDD8-00.pro-input-0";
-        sinkName = "hybrid_voice_input";
-      };
-    };
+    services.audio.enable = true;
 
     programs.gaming.enable = true;
     programs.lutris.enable = true;
