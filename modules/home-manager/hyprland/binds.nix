@@ -4,7 +4,6 @@
     # === Application Launchers ===
     "$mainMod, T, exec, $terminal"
     "$mainMod, E, exec, thunar"
-    "$mainMod, A, exec, caelestia-shell ipc --any-display call drawers toggle launcher"
     "$mainMod, D, exec, vesktop"
     "$mainMod, B, exec, $browser"
     "$mainMod, C, exec, code"
@@ -16,7 +15,7 @@
     "$mainMod SHIFT, F, fullscreen, 1"
     "$mainMod, P, pseudo"
     "$mainMod, J, togglesplit"
-    "$mainMod, M, exit,"
+    "$mainMod, M, exec, easyeffects,"
     "$mainMod, G, togglegroup"
     "$mainMod, Tab, changegroupactive, f"
     "$mainMod SHIFT, Tab, changegroupactive, b"
@@ -126,5 +125,9 @@
     ", XF86AudioNext, exec, playerctl next"
     ", XF86AudioPrev, exec, playerctl previous"
     ", XF86AudioStop, exec, playerctl stop"
+  ];
+
+  bindr = [
+    "$mainMod, Super_L, exec, caelestia-shell ipc --any-display call drawers toggle launcher"
   ];
 }

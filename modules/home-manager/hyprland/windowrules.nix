@@ -21,6 +21,8 @@
     "match:title ^(Save File)$, float on"
     "match:title ^(Confirm to replace files)$, float on"
     "match:title ^(File Operation Progress)$, float on"
+    "match:title ^(JSST Subtitles)$, float on"
+    "match:title ^(JSST Subtitles)$, pin on"
 
     # === Picture-in-Picture ===
     "match:title ^(Picture-in-Picture)$, float on"

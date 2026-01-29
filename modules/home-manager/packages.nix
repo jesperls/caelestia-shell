@@ -32,7 +32,6 @@ in
     yt-dlp
     playerctl
     trash-cli
-    gemini-cli
 
     # === Screen/Display ===
     grim
@@ -54,6 +53,9 @@ in
     qpwgraph
     overskride
     espeak
+    audacity
+    portaudio
+    pkg-config
 
     # === Hardware ===
     solaar
@@ -61,16 +63,15 @@ in
 
     # === Applications ===
     obsidian
-    libreoffice
     gedit
     mpv
     rhythmbox
     gimp
     prismlauncher
-    heroic
     qbittorrent
     antigravity
     protontricks
+    via
 
     # === File Management ===
     file-roller
