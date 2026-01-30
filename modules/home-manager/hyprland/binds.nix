@@ -7,6 +7,7 @@
     "$mainMod, D, exec, vesktop"
     "$mainMod, B, exec, $browser"
     "$mainMod, C, exec, code"
+    "$mainMod, L, exec, cd ~/Source/jsst && uv run main.py"
 
     # === Window Management ===
     "$mainMod, Q, killactive,"

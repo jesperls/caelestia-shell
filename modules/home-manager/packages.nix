@@ -71,6 +71,7 @@ in
     qbittorrent
     antigravity
     protontricks
+    ungoogled-chromium
     via
 
     # === File Management ===
