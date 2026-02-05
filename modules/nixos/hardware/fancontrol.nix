@@ -14,7 +14,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.coolercontrol.enable = true;
+    programs.coolercontrol.enable = false;
 
     environment.systemPackages = with pkgs; [
       liquidctl

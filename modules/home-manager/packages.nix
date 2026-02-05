@@ -32,6 +32,7 @@ in
     yt-dlp
     playerctl
     trash-cli
+    aria2
 
     # === Screen/Display ===
     grim
@@ -73,6 +74,7 @@ in
     protontricks
     ungoogled-chromium
     via
+    helix
 
     # === File Management ===
     file-roller
