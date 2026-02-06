@@ -16,6 +16,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Kernel
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
     # Applications
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
@@ -41,6 +44,9 @@
           modules = [
             ./hosts/pangu/configuration.nix
             home-manager.nixosModules.home-manager
+            {
+              nixpkgs.overlays = [ inputs.nix-cachyos-kernel.overlays.pinned ];
+            }
           ];
         };
       };

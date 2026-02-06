@@ -22,22 +22,22 @@
     system = {
       locale = lib.mkOption {
         type = lib.types.str;
-        default = lib.mkDefault "en_US.UTF-8";
+        default = "en_US.UTF-8";
         description = "The system locale.";
       };
       timeZone = lib.mkOption {
         type = lib.types.str;
-        default = lib.mkDefault "Europe/Stockholm";
+        default = "Europe/Stockholm";
         description = "The system timezone.";
       };
       keyboardLayout = lib.mkOption {
         type = lib.types.str;
-        default = lib.mkDefault "se";
+        default = "se";
         description = "The keyboard layout.";
       };
       consoleKeyMap = lib.mkOption {
         type = lib.types.str;
-        default = lib.mkDefault "sv-latin1";
+        default = "sv-latin1";
         description = "The console key map.";
       };
       extraLocaleSettings = lib.mkOption {
@@ -47,12 +47,12 @@
       };
       hostName = lib.mkOption {
         type = lib.types.str;
-        default = lib.mkDefault "nixos";
+        default = "nixos";
         description = "The system hostname.";
       };
       stateVersion = lib.mkOption {
         type = lib.types.str;
-        default = lib.mkDefault "25.05";
+        default = "25.05";
         description = "The system state version.";
       };
     };

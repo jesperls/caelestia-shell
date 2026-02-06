@@ -7,7 +7,9 @@
 }:
 
 let
-  theme = osConfig.mySystem.theme.colors;
+  colors = osConfig.mySystem.theme.colors;
+  theme = osConfig.mySystem.theme;
+  removeHash = builtins.replaceStrings [ "#" ] [ "" ];
 in
 {
   programs.starship = {
@@ -21,11 +23,11 @@ in
         error_symbol = "[➜](bold red)";
       };
       directory = {
-        style = "bold ${theme.accent}";
+        style = "bold ${colors.accent}";
         truncation_length = 4;
       };
       git_branch = {
-        style = "bold ${theme.accent2}";
+        style = "bold ${colors.accent2}";
         format = "[$symbol$branch]($style) ";
       };
       git_status = {
@@ -39,7 +41,7 @@ in
       };
       cmd_duration = {
         format = "[$duration]($style)";
-        style = "${theme.muted}";
+        style = "${colors.muted}";
         min_time = 2000;
       };
     };
@@ -61,17 +63,17 @@ in
       "--inline-info"
     ];
     colors = {
-      fg = theme.text;
-      bg = theme.background;
-      hl = theme.accent;
-      "fg+" = theme.text;
-      "bg+" = theme.surface;
-      "hl+" = theme.accent2;
-      info = theme.muted;
-      prompt = theme.accent;
-      pointer = theme.accent2;
-      marker = theme.accent;
-      spinner = theme.accent;
+      fg = colors.text;
+      bg = colors.background;
+      hl = colors.accent;
+      "fg+" = colors.text;
+      "bg+" = colors.surface;
+      "hl+" = colors.accent2;
+      info = colors.muted;
+      prompt = colors.accent;
+      pointer = colors.accent2;
+      marker = colors.accent;
+      spinner = colors.accent;
     };
   };
 
@@ -94,10 +96,9 @@ in
 
   programs.kitty = {
     enable = true;
-    themeFile = "Catppuccin-Mocha";
     settings = {
-      font_family = osConfig.mySystem.theme.fonts.monospace;
-      font_size = builtins.toString osConfig.mySystem.theme.fonts.size;
+      font_family = theme.fonts.monospace;
+      font_size = builtins.toString theme.fonts.size;
       adjust_line_height = "120%";
       window_padding_width = 10;
       confirm_os_window_close = 0;
@@ -118,6 +119,23 @@ in
       tab_bar_edge = "bottom";
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";
+
+      # Colors from system theme
+      foreground = colors.text;
+      background = colors.background;
+      selection_foreground = colors.background;
+      selection_background = colors.accent;
+      cursor = colors.accent;
+      cursor_text_color = colors.background;
+      url_color = colors.accent2;
+      active_border_color = colors.accent;
+      inactive_border_color = colors.border;
+      bell_border_color = colors.accent2;
+      active_tab_foreground = colors.background;
+      active_tab_background = colors.accent;
+      inactive_tab_foreground = colors.muted;
+      inactive_tab_background = colors.surface;
+      tab_bar_background = colors.surfaceAlt;
     };
     keybindings = {
       "ctrl+shift+t" = "new_tab_with_cwd";

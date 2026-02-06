@@ -9,8 +9,6 @@
   powerManagement.enable = true;
   services.power-profiles-daemon.enable = true;
 
-  hardware.cpu.intel.updateMicrocode = true;
-
   zramSwap = {
     enable = true;
     algorithm = "zstd";
@@ -61,5 +59,10 @@
   services.fstrim = {
     enable = true;
     interval = "weekly";
+  };
+
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
   };
 }

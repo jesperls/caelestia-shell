@@ -53,6 +53,7 @@ in
   ];
 
   xdg.systemDirs.data = [
+    "${config.home.homeDirectory}/.local/share"
     "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
     "${config.home.homeDirectory}/.local/share/flatpak/exports/share"
     "/var/lib/flatpak/exports/share"

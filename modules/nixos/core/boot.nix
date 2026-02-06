@@ -13,7 +13,7 @@
       timeout = 1;
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
     kernelParams = [
       "quiet"
       "splash"
@@ -36,13 +36,9 @@
     consoleLogLevel = 0;
     initrd.verbose = false;
 
-    tmp.useTmpfs = true;
+    tmp = {
+      useTmpfs = true;
+      tmpfsSize = "4G";
+    };
   };
-
-  boot.initrd.kernelModules = [
-    "nvidia"
-    "nvidia_modeset"
-    "nvidia_uvm"
-    "nvidia_drm"
-  ];
 }
