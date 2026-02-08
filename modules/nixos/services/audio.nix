@@ -33,10 +33,10 @@ in
         # Match A50's native sample rate to avoid resampling
         "default.clock.rate" = 48000;
         "default.clock.allowed-rates" = [ 48000 ];
-        # Quantum settings for stable audio
-        "default.clock.quantum" = 1024;
-        "default.clock.min-quantum" = 512;
-        "default.clock.max-quantum" = 2048;
+        # Quantum settings for low-latency gaming audio
+        "default.clock.quantum" = 512;
+        "default.clock.min-quantum" = 256;
+        "default.clock.max-quantum" = 1024;
       };
     };
 

@@ -20,7 +20,6 @@ in
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     CLUTTER_BACKEND = "wayland";
     SDL_VIDEODRIVER = "wayland";
-    WLR_NO_HARDWARE_CURSORS = "1";
 
     # === XDG / Desktop ===
     XDG_CURRENT_DESKTOP = "Hyprland";

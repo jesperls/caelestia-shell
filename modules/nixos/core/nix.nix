@@ -55,7 +55,6 @@
       # Core C libraries
       stdenv.cc.cc.lib
       stdenv.cc.libc
-      glibc
 
       # Python essentials - these are critical for uv-managed Python
       zlib

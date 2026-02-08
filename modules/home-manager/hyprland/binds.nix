@@ -81,7 +81,7 @@
     "$mainMod SHIFT, C, exec, hyprpicker -a"
 
     # === Screen Recording ===
-    "$mainMod SHIFT, R, exec, pkill -x gpu-screen-recorder || gpu-screen-recorder -w DP-3 -f 60 -a default_output -o $HOME/Videos/$(date +'%Y-%m-%d-%H%M%S').mp4"
+    "$mainMod SHIFT, R, exec, pkill -x gpu-screen-recorder || gpu-screen-recorder -w $(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name') -f 60 -a default_output -o $HOME/Videos/$(date +'%Y-%m-%d-%H%M%S').mp4"
 
     # === Monitor focus ===
     "$mainMod, period, focusmonitor, -1"

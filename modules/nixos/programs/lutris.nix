@@ -60,7 +60,6 @@ let
         cups
         fontconfig
         libunwind
-        libxml2
         libopus
         libva
 
@@ -95,11 +94,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    hardware.graphics = {
-      enable = lib.mkDefault true;
-      enable32Bit = lib.mkDefault true;
-    };
-
     environment.systemPackages = [
       lutrisWithDeps
     ];

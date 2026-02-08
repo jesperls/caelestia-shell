@@ -162,4 +162,34 @@ in
       update_ms = 1000;
     };
   };
+
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = osConfig.mySystem.user.fullName;
+        email = osConfig.mySystem.user.email;
+      };
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      push.autoSetupRemote = true;
+      merge.conflictstyle = "diff3";
+      diff.colorMoved = "default";
+    };
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
+  programs.mpv = {
+    enable = true;
+    config = {
+      gpu-api = "vulkan";
+      hwdec = "auto-safe";
+      vo = "gpu-next";
+      profile = "gpu-hq";
+    };
+  };
 }

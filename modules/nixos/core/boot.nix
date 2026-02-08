@@ -27,11 +27,7 @@
       "video=HDMI-A-1:1920x1080@60"
     ];
 
-    plymouth = {
-      enable = false;
-      theme = "pixels";
-      themePackages = [ pkgs.adi1090x-plymouth-themes ];
-    };
+    plymouth.enable = false;
 
     consoleLogLevel = 0;
     initrd.verbose = false;

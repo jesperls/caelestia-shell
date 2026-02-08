@@ -52,7 +52,7 @@
       };
       stateVersion = lib.mkOption {
         type = lib.types.str;
-        default = "25.05";
+        default = "26.05";
         description = "The system state version.";
       };
     };

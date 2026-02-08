@@ -1,22 +1,17 @@
 {
   pkgs,
-  inputs,
   ...
 }:
 
-let
-  system = pkgs.stdenv.hostPlatform.system;
-in
 {
   home.packages = with pkgs; [
-    nixfmt
+    nixfmt-tree
     nil
     vscode
     uv
     python314
     nodejs
     dbeaver-bin
-    git
     ydotool
 
     # === CLI Utilities ===
@@ -50,7 +45,6 @@ in
 
     # === Audio ===
     pavucontrol
-    pulseaudio
     qpwgraph
     overskride
     espeak
@@ -65,13 +59,10 @@ in
     # === Applications ===
     obsidian
     gedit
-    mpv
-    rhythmbox
     gimp
     prismlauncher
     qbittorrent
     antigravity
-    protontricks
     ungoogled-chromium
     via
     helix
@@ -85,14 +76,7 @@ in
     feh
     imv
 
-    # === Gaming/Wine ===
-    wineWowPackages.stable
-    winetricks
-
     # === CUDA ===
     cudaPackages.cudnn
-
-    # === Custom Packages ===
-    inputs.deltatune.packages.${system}.default
   ];
 }

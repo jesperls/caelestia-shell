@@ -22,7 +22,7 @@
 
   environment.sessionVariables = {
     "__GL_SHADER_DISK_CACHE" = "1";
-    "__GL_SHADER_DISK_CACHE_PATH" = "/tmp/nvidia-shader-cache";
+    "__GL_SHADER_DISK_CACHE_PATH" = "$HOME/.cache/nvidia-shader-cache";
   };
 
   boot.kernel.sysctl = {
@@ -55,8 +55,10 @@
     freeSwapThreshold = 10;
     enableNotifications = true;
     extraArgs = [
-      "--prefer" "(^|/)(wine|wineserver|Battle\\.net|lutris-wrapper|\\.exe)$"
-      "--avoid" "(^|/)(Hyprland|pipewire|wireplumber)$"
+      "--prefer"
+      "(^|/)(wine|wineserver|Battle\\.net|lutris-wrapper|\\.exe)$"
+      "--avoid"
+      "(^|/)(Hyprland|pipewire|wireplumber)$"
     ];
   };
 
