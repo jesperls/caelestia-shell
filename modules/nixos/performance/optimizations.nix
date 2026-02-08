@@ -12,7 +12,7 @@
   zramSwap = {
     enable = true;
     algorithm = "zstd";
-    memoryPercent = 25;
+    memoryPercent = 50;
     priority = 100;
   };
 
@@ -51,9 +51,13 @@
 
   services.earlyoom = {
     enable = true;
-    freeMemThreshold = 5;
+    freeMemThreshold = 10;
     freeSwapThreshold = 10;
     enableNotifications = true;
+    extraArgs = [
+      "--prefer" "(^|/)(wine|wineserver|Battle\\.net|lutris-wrapper|\\.exe)$"
+      "--avoid" "(^|/)(Hyprland|pipewire|wireplumber)$"
+    ];
   };
 
   services.fstrim = {

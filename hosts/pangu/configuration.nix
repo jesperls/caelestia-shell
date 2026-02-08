@@ -100,7 +100,7 @@
     services.audio.enable = true;
 
     programs.gaming.enable = true;
-    programs.lutris.enable = false;
+    programs.lutris.enable = true;
   };
 
   # Enable speech-dispatcher for text-to-speech

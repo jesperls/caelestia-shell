@@ -48,6 +48,17 @@ let
         libgcrypt
         lcms2
         zlib
+
+        # Battle.net / Blizzard launcher dependencies
+        freetype
+        glib
+        openldap
+        sqlite
+        libgpg-error
+        libxml2
+        dbus
+        cups
+        fontconfig
         libunwind
         libxml2
         libopus
@@ -92,5 +103,13 @@ in
     environment.systemPackages = [
       lutrisWithDeps
     ];
+
+    # Prevent Wine/DXVK GPU hangs on NVIDIA that can freeze the system
+    environment.sessionVariables = {
+      # Disable NVIDIA threaded optimizations for Wine (common cause of hangs)
+      __GL_THREADED_OPTIMIZATIONS = "0";
+      # Wine large address aware — helps with Battle.net memory usage
+      WINE_LARGE_ADDRESS_AWARE = "1";
+    };
   };
 }

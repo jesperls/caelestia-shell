@@ -120,7 +120,6 @@ in
       tab_bar_style = "powerline";
       tab_powerline_style = "slanted";
 
-      # Colors from system theme
       foreground = colors.text;
       background = colors.background;
       selection_foreground = colors.background;

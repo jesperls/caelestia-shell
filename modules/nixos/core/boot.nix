@@ -5,7 +5,7 @@
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = 5;
+        configurationLimit = 3;
         editor = false;
         consoleMode = "max";
       };
@@ -28,7 +28,7 @@
     ];
 
     plymouth = {
-      enable = true;
+      enable = false;
       theme = "pixels";
       themePackages = [ pkgs.adi1090x-plymouth-themes ];
     };

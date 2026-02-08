@@ -40,10 +40,24 @@ in
             vulkan-loader
             vulkan-validation-layers
             gamescope
+            gamemode
+
+            # Battle.net / Blizzard launcher dependencies
+            freetype
+            glib
+            gnutls
+            openldap
+            sqlite
+            libgpg-error
+            libxml2
+            mono
           ];
       };
 
-      extraPackages = with pkgs; [ mangohud ];
+      extraPackages = with pkgs; [
+        mangohud
+        gamemode
+      ];
     };
 
     programs.gamemode = {
