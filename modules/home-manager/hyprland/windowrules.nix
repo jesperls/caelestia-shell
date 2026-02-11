@@ -31,7 +31,9 @@
     "match:title ^(Picture-in-Picture)$, move 100%-490 100%-280"
 
     # === Opacity ===
-    "match:class kitty, opacity 0.92 0.88"
+    "match:class kitty, opacity 0.85 0.85"
+    "match:class thunar, opacity 0.85 0.85"
+    "match:class gedit, opacity 0.85 0.85"
 
     # === Portal & Auth ===
     "match:class xdg-desktop-portal-gtk, float on"

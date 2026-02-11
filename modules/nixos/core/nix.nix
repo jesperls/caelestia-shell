@@ -80,19 +80,19 @@
       libgbm
       mesa
       libdrm
-      xorg.libX11
-      xorg.libXext
-      xorg.libXrender
-      xorg.libXcomposite
-      xorg.libXdamage
-      xorg.libXfixes
-      xorg.libXrandr
-      xorg.libxcb
-      xorg.libXcursor
-      xorg.libXi
-      xorg.libXinerama
-      xorg.libXScrnSaver
-      xorg.libXtst
+      libx11
+      libxext
+      libxrender
+      libxcomposite
+      libxdamage
+      libxfixes
+      libxrandr
+      libxcb
+      libxcursor
+      libxi
+      libxinerama
+      libxscrnsaver
+      libxtst
       libxkbcommon
       wayland
 

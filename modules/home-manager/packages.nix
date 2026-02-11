@@ -6,12 +6,12 @@
 {
   home.packages = with pkgs; [
     nixfmt-tree
+    nixfmt
     nil
     vscode
     uv
     python314
     nodejs
-    dbeaver-bin
     ydotool
 
     # === CLI Utilities ===
@@ -64,8 +64,6 @@
     qbittorrent
     antigravity
     ungoogled-chromium
-    via
-    helix
 
     # === File Management ===
     file-roller

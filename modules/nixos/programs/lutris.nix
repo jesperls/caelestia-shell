@@ -33,14 +33,14 @@ let
         libjpeg
         libGL
         libglvnd
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXinerama
-        xorg.libXScrnSaver
-        xorg.libXext
-        xorg.libXrandr
-        xorg.libXxf86vm
-        xorg.libXtst
+        libxcursor
+        libxi
+        libxinerama
+        libxscrnsaver
+        libxext
+        libxrandr
+        libxxf86vm
+        libxtst
 
         # Crypto / TLS and system glue
         openssl
