@@ -23,6 +23,7 @@
 
     # === Wallpaper ===
     "$mainMod SHIFT, W, exec, wallpaper-manager"
+    "$mainMod CTRL, W, exec, wallpaper-manager pick"
 
     # === Focus Movement ===
     "$mainMod, left, movefocus, l"
