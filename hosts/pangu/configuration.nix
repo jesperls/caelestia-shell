@@ -48,7 +48,7 @@
       colors = {
         accent = "#d47fa6";
         accent2 = "#e3b17a";
-        background = "#0f1117";
+        background = "#0F0F0F";
         surface = "#191b21";
         surfaceAlt = "#13141a";
         text = "#e6e3e8";

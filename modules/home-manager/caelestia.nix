@@ -1,15 +1,11 @@
-{ pkgs, inputs, ... }:
+{
+  inputs,
+  osConfig,
+  ...
+}:
 
 let
-  system = pkgs.stdenv.hostPlatform.system;
-  caelestiaShellPatched = inputs.caelestia-shell.packages.${system}."with-cli".overrideAttrs (old: {
-    prePatch = (old.prePatch or "") + ''
-      substituteInPlace services/GameMode.qml \
-        --replace '"general:border_size": 1' '"general:border_size": 0'
-      substituteInPlace services/Notifs.qml \
-        --replace 'notif.tracked = true;' 'const app = (notif.appName || "").toLowerCase(); if (app.includes("spotify")) return; notif.tracked = true;'
-    '';
-  });
+  colors = osConfig.mySystem.theme.colors;
 in
 
 {
@@ -17,41 +13,34 @@ in
 
   programs.caelestia = {
     enable = true;
-    package = caelestiaShellPatched;
     systemd = {
       enable = true;
       target = "graphical-session.target";
     };
     cli.enable = true;
+
+    baseColors = colors;
+
     settings = {
       appearance = {
-        anim = {
-          durations = {
-            scale = 0.4;
-          };
-        };
+        anim.durations.scale = 0.4;
       };
-      background = {
-        enabled = false;
-      };
+      background.enabled = false;
       paths.wallpaperDir = "~/Pictures/Wallpapers";
       bar.status = {
         showBattery = true;
         showAudio = true;
         showWifi = false;
       };
-      border = {
-        thickness = 1;
-      };
+      border.thickness = 1;
       general = {
-        apps = {
-          explorer = [ "thunar" ];
-        };
+        apps.explorer = [ "thunar" ];
         idle = {
           lockBeforeSleep = false;
           timeouts = [ ];
         };
       };
+      services.smartScheme = false;
     };
   };
 }

@@ -12,7 +12,7 @@
 
     # Desktop
     caelestia-shell = {
-      url = "github:caelestia-dots/shell";
+      url = "github:jesperls/caelestia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
