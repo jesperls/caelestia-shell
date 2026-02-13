@@ -73,7 +73,6 @@ let
 
     extraPkgs =
       pkgs: with pkgs; [
-        wineWowPackages.staging
         winetricks
         gamescope
         mangohud

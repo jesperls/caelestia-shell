@@ -13,6 +13,9 @@
           "hyprland"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.OpenURI" = [
+          "gtk"
+        ];
       };
     };
   };

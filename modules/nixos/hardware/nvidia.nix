@@ -40,7 +40,10 @@ in
       "nvidia_drm"
     ];
 
-    boot.kernelParams = [ "nvidia-drm.modeset=1" ];
+    boot.kernelParams = [
+      "nvidia-drm.modeset=1"
+      "nvidia-drm.fbdev=1"
+    ];
 
     environment.sessionVariables = {
       LIBVA_DRIVER_NAME = "nvidia";

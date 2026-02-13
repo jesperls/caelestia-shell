@@ -72,10 +72,6 @@
       expat
       libxcrypt
 
-      # Build essentials (for packages that compile)
-      gcc
-      binutils
-
       # Graphics/GUI (for matplotlib, tkinter, etc.)
       libgbm
       mesa
@@ -114,14 +110,6 @@
       # Qt
       qt6.qtbase
       qt6.qtwayland
-
-      # CUDA
-      cudaPackages.cudatoolkit
-      cudaPackages.cudnn
-      cudaPackages.libcublas
-      cudaPackages.libcurand
-      cudaPackages.libcufft
-      config.boot.kernelPackages.nvidiaPackages.stable
 
       # Additional libraries for common Python packages
       libGL

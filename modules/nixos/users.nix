@@ -16,8 +16,6 @@
       "audio"
       "input"
       "storage"
-      "docker"
-      "libvirtd"
       "gamemode"
     ];
     shell = pkgs.zsh;

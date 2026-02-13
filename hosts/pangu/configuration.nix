@@ -93,6 +93,7 @@
     hardware.vial.enable = true;
     hardware.webcam.enable = true;
     hardware.fancontrol.enable = true;
+    hardware.logitech.enable = true;
 
     services.backup.enable = true;
     services.bluetooth.enable = true;
@@ -101,6 +102,10 @@
 
     programs.gaming.enable = true;
     programs.lutris.enable = true;
+    programs.fonts.enable = true;
+    programs.filemanager.enable = true;
+
+    performance.enable = true;
   };
 
   # Enable speech-dispatcher for text-to-speech

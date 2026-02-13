@@ -34,7 +34,7 @@
 
     tmp = {
       useTmpfs = true;
-      tmpfsSize = "4G";
+      tmpfsSize = "8G";
     };
   };
 }

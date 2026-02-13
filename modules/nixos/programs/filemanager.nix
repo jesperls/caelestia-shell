@@ -5,18 +5,27 @@
   ...
 }:
 
+let
+  cfg = config.mySystem.programs.filemanager;
+in
 {
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
+  options.mySystem.programs.filemanager = {
+    enable = lib.mkEnableOption "Thunar file manager";
   };
 
-  programs.xfconf.enable = true;
+  config = lib.mkIf cfg.enable {
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
 
-  services.gvfs.enable = true;
-  services.tumbler.enable = true;
-  services.udisks2.enable = true;
+    programs.xfconf.enable = true;
+
+    services.gvfs.enable = true;
+    services.tumbler.enable = true;
+    services.udisks2.enable = true;
+  };
 }

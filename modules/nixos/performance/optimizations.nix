@@ -5,70 +5,77 @@
   ...
 }:
 
+let
+  cfg = config.mySystem.performance;
+in
 {
-  powerManagement.enable = true;
-  services.power-profiles-daemon.enable = true;
-
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-    memoryPercent = 50;
-    priority = 100;
+  options.mySystem.performance = {
+    enable = lib.mkEnableOption "Desktop performance optimizations";
   };
 
-  services.thermald.enable = true;
+  config = lib.mkIf cfg.enable {
+    zramSwap = {
+      enable = true;
+      algorithm = "zstd";
+      memoryPercent = 25;
+      priority = 100;
+    };
 
-  hardware.enableRedistributableFirmware = true;
+    services.thermald.enable = true;
 
-  environment.sessionVariables = {
-    "__GL_SHADER_DISK_CACHE" = "1";
-    "__GL_SHADER_DISK_CACHE_PATH" = "$HOME/.cache/nvidia-shader-cache";
-  };
+    hardware.enableRedistributableFirmware = true;
 
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
-    "vm.vfs_cache_pressure" = 50;
-    "vm.dirty_ratio" = 10;
-    "vm.dirty_background_ratio" = 5;
+    environment.sessionVariables = {
+      "__GL_SHADER_DISK_CACHE" = "1";
+      "__GL_SHADER_DISK_CACHE_PATH" = "$HOME/.cache/nvidia-shader-cache";
+    };
 
-    "net.core.rmem_max" = 16777216;
-    "net.core.wmem_max" = 16777216;
-    "net.ipv4.tcp_fastopen" = 3;
-    "net.ipv4.tcp_congestion_control" = "bbr";
+    boot.kernel.sysctl = {
+      "vm.swappiness" = 133;
+      "vm.page-cluster" = 0;
+      "vm.vfs_cache_pressure" = 50;
+      "vm.dirty_ratio" = 10;
+      "vm.dirty_background_ratio" = 5;
 
-    "fs.inotify.max_user_watches" = 524288;
-    "fs.file-max" = 2097152;
-  };
+      "net.core.rmem_max" = 16777216;
+      "net.core.wmem_max" = 16777216;
+      "net.ipv4.tcp_fastopen" = 3;
+      "net.ipv4.tcp_congestion_control" = "bbr";
 
-  boot.kernelModules = [ "tcp_bbr" ];
+      "fs.inotify.max_user_watches" = 524288;
+      "fs.file-max" = 2097152;
+    };
 
-  services.udev.extraRules = ''
-    # Set scheduler for NVMe
-    ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/scheduler}="none"
-    # Set scheduler for SSD
-    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
-  '';
+    boot.kernelModules = [ "tcp_bbr" ];
 
-  services.earlyoom = {
-    enable = true;
-    freeMemThreshold = 10;
-    freeSwapThreshold = 10;
-    enableNotifications = true;
-    extraArgs = [
-      "--prefer"
-      "(^|/)(wine|wineserver|Battle\\.net|lutris-wrapper|\\.exe)$"
-      "--avoid"
-      "(^|/)(Hyprland|pipewire|wireplumber)$"
-    ];
-  };
+    services.udev.extraRules = ''
+      # Set scheduler for NVMe
+      ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/scheduler}="none"
+      # Set scheduler for SSD
+      ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
+    '';
 
-  services.fstrim = {
-    enable = true;
-    interval = "weekly";
-  };
+    services.earlyoom = {
+      enable = true;
+      freeMemThreshold = 10;
+      freeSwapThreshold = 10;
+      enableNotifications = true;
+      extraArgs = [
+        "--prefer"
+        "(^|/)(wine|wineserver|Battle\\.net|lutris-wrapper|\\.exe)$"
+        "--avoid"
+        "(^|/)(Hyprland|pipewire|wireplumber)$"
+      ];
+    };
 
-  services.scx = {
-    enable = true;
-    scheduler = "scx_lavd";
+    services.fstrim = {
+      enable = true;
+      interval = "weekly";
+    };
+
+    services.scx = {
+      enable = true;
+      scheduler = "scx_lavd";
+    };
   };
 }

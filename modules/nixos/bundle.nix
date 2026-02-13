@@ -13,6 +13,7 @@
     ./hardware/vial.nix
     ./hardware/webcam.nix
     ./hardware/fancontrol.nix
+    ./hardware/logitech.nix
 
     ./services/audio.nix
     ./services/bluetooth.nix

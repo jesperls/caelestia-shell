@@ -37,6 +37,7 @@
     wofi
 
     # === System Integration ===
+    xdg-desktop-portal-gtk
     gsettings-desktop-schemas
     glib
     wlogout
@@ -47,7 +48,7 @@
     pavucontrol
     qpwgraph
     overskride
-    espeak
+    espeak-ng
     audacity
     portaudio
     pkg-config
@@ -71,10 +72,6 @@
     zip
     unrar
     evince
-    feh
     imv
-
-    # === CUDA ===
-    cudaPackages.cudnn
   ];
 }

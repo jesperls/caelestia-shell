@@ -35,14 +35,14 @@
       "application/x-desktop" = "gedit.desktop";
       "application/x-shellscript" = "code.desktop";
 
-      "image/jpeg" = "feh.desktop";
-      "image/jpg" = "feh.desktop";
-      "image/png" = "feh.desktop";
-      "image/gif" = "feh.desktop";
-      "image/webp" = "feh.desktop";
-      "image/svg+xml" = "feh.desktop";
-      "image/bmp" = "feh.desktop";
-      "image/tiff" = "feh.desktop";
+      "image/jpeg" = "imv.desktop";
+      "image/jpg" = "imv.desktop";
+      "image/png" = "imv.desktop";
+      "image/gif" = "imv.desktop";
+      "image/webp" = "imv.desktop";
+      "image/svg+xml" = "imv.desktop";
+      "image/bmp" = "imv.desktop";
+      "image/tiff" = "imv.desktop";
 
       "application/pdf" = "evince.desktop";
       "application/postscript" = "evince.desktop";
