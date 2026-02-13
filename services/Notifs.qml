@@ -76,6 +76,8 @@ Singleton {
         persistenceSupported: true
 
         onNotification: notif => {
+            const app = (notif.appName || "").toLowerCase();
+            if (app.includes("spotify")) return;
             notif.tracked = true;
 
             const comp = notifComp.createObject(root, {
