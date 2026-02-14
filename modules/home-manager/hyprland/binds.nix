@@ -20,6 +20,11 @@
     "$mainMod, G, togglegroup"
     "$mainMod, Tab, changegroupactive, f"
     "$mainMod SHIFT, Tab, changegroupactive, b"
+    "$mainMod CTRL, Tab, hyprexpo:expo, toggle"
+    "ALT, Tab, cyclenext"
+    "ALT, Tab, bringactivetotop"
+    "ALT SHIFT, Tab, cyclenext, prev"
+    "ALT SHIFT, Tab, bringactivetotop"
 
     # === Focus Movement ===
     "$mainMod, left, movefocus, l"
@@ -58,8 +63,8 @@
     "$mainMod SHIFT, 0, movetoworkspace, 10"
 
     # === Workspace Scroll ===
-    "$mainMod, mouse_down, workspace, e+1"
-    "$mainMod, mouse_up, workspace, e-1"
+    "$mainMod, mouse_down, workspace, r-1"
+    "$mainMod, mouse_up, workspace, r+1"
 
     # === Special Workspace ===
     "$mainMod, grave, togglespecialworkspace, magic"
@@ -81,8 +86,10 @@
     "$mainMod SHIFT, R, exec, pkill -x gpu-screen-recorder || gpu-screen-recorder -w $(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name') -f 60 -a default_output -o $HOME/Videos/$(date +'%Y-%m-%d-%H%M%S').mp4"
 
     # === Monitor focus ===
-    "$mainMod, period, focusmonitor, -1"
-    "$mainMod, comma, focusmonitor, +1"
+    "$mainMod, period, workspace, r+1"
+    "$mainMod, comma, workspace, r-1"
+    "$mainMod CTRL, period, focusmonitor, -1"
+    "$mainMod CTRL, comma, focusmonitor, +1"
     "$mainMod SHIFT, period, movewindow, mon:-1"
     "$mainMod SHIFT, comma, movewindow, mon:+1"
   ];
