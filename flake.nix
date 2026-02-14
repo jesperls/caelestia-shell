@@ -21,6 +21,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    quickshell-package-manager = {
+      url = "github:jesperls/nix-quickshell-package-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Kernel
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 

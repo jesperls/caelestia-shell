@@ -18,5 +18,6 @@
     ./easyeffects.nix
     ./firefox.nix
     ./wallpaper-picker.nix
+    ./quickshell-package-manager.nix
   ];
 }

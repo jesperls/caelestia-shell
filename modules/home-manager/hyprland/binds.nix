@@ -9,12 +9,13 @@
     "$mainMod, C, exec, code"
     "$mainMod, L, exec, cd ~/Source/jsst && uv run main.py"
 
+    "$mainMod, P, exec, qs-pkg-manager"
+
     # === Window Management ===
     "$mainMod, Q, killactive,"
     "$mainMod, W, togglefloating"
     "$mainMod, F, fullscreen, 0"
     "$mainMod SHIFT, F, fullscreen, 1"
-    "$mainMod, P, pseudo"
     "$mainMod, J, togglesplit"
     "$mainMod, M, exec, easyeffects,"
     "$mainMod, G, togglegroup"

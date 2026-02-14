@@ -13,8 +13,6 @@
     python314
     nodejs
     ydotool
-
-    # === CLI Utilities ===
     jq
     yq
     fd
@@ -28,23 +26,17 @@
     playerctl
     trash-cli
     aria2
-
-    # === Screen/Display ===
     grim
     slurp
     wl-clipboard
     cliphist
     wofi
-
-    # === System Integration ===
     xdg-desktop-portal-gtk
     gsettings-desktop-schemas
     glib
     wlogout
     networkmanagerapplet
     mission-center
-
-    # === Audio ===
     pavucontrol
     qpwgraph
     overskride
@@ -52,12 +44,8 @@
     audacity
     portaudio
     pkg-config
-
-    # === Hardware ===
     solaar
     scrcpy
-
-    # === Applications ===
     obsidian
     gedit
     gimp
@@ -65,8 +53,6 @@
     qbittorrent
     antigravity
     ungoogled-chromium
-
-    # === File Management ===
     file-roller
     unzip
     zip

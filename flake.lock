@@ -137,11 +137,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771037579,
-        "narHash": "sha256-NX5XuhGcsmk0oEII2PEtMRgvh2KaAv3/WWQsOpxAgR4=",
+        "lastModified": 1771102945,
+        "narHash": "sha256-e5NfW8NhC3qChR8bHVni/asrig/ZFzd1wzpq+cEE/tg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "05e6dc0f6ed936f918cb6f0f21f1dad1e4c53150",
+        "rev": "ff5e5d882c51f9a032479595cbab40fd04f56399",
         "type": "github"
       },
       "original": {
@@ -273,7 +273,49 @@
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       }
     },
+    "quickshell-package-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell_2"
+      },
+      "locked": {
+        "lastModified": 1771107195,
+        "narHash": "sha256-VUKDeCklMpwjtVWnfU/2UUbgkOdxzv83/YMw2G6j0T0=",
+        "owner": "jesperls",
+        "repo": "nix-quickshell-package-manager",
+        "rev": "83a14601e1505f978fc01dd236dad9f5e5641836",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jesperls",
+        "repo": "nix-quickshell-package-manager",
+        "type": "github"
+      }
+    },
     "quickshell_2": {
+      "inputs": {
+        "nixpkgs": [
+          "quickshell-package-manager",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770693276,
+        "narHash": "sha256-ngXnN5YXu+f45+QGYNN/VEBMQmcBCYGRCqwaK8cxY1s=",
+        "ref": "refs/heads/master",
+        "rev": "dacfa9de829ac7cb173825f593236bf2c21f637e",
+        "revCount": 735,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
+    "quickshell_3": {
       "inputs": {
         "nixpkgs": [
           "wallpaper-picker",
@@ -301,6 +343,7 @@
         "home-manager": "home-manager",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nixpkgs": "nixpkgs_3",
+        "quickshell-package-manager": "quickshell-package-manager",
         "spicetify-nix": "spicetify-nix",
         "wallpaper-picker": "wallpaper-picker"
       }
@@ -344,7 +387,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "quickshell": "quickshell_2"
+        "quickshell": "quickshell_3"
       },
       "locked": {
         "lastModified": 1771080377,
