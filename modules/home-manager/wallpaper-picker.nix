@@ -16,11 +16,14 @@ in
     enable = true;
     theme = {
       accent = colors.accent;
+      accent2 = colors.accent2;
       background = colors.background;
       surface = colors.surface;
+      surfaceAlt = colors.surfaceAlt;
       text = colors.text;
       muted = colors.muted;
       border = colors.border;
+      shadow = colors.shadow;
       inherit rounding;
     };
   };

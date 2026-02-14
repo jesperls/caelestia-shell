@@ -21,8 +21,16 @@
       gaps_out = osConfig.mySystem.theme.gaps.outer;
       border_size = osConfig.mySystem.theme.borders;
       "col.active_border" =
-        "rgba(${lib.removePrefix "#" osConfig.mySystem.theme.colors.accent}ee) rgba(${lib.removePrefix "#" osConfig.mySystem.theme.colors.accent2}ee) 45deg";
-      "col.inactive_border" = "rgba(${lib.removePrefix "#" osConfig.mySystem.theme.colors.surface}aa)";
+        let
+          t = osConfig.mySystem.theme;
+          c1 = lib.removePrefix "#" t.colors.activeBorder;
+          a = t.opacity.activeBorder;
+        in
+        if t.borderGradient.enable then
+          "rgba(${c1}${a}) rgba(${lib.removePrefix "#" t.borderGradient.secondColor}${a}) ${toString t.borderGradient.angle}deg"
+        else
+          "rgba(${c1}${a})";
+      "col.inactive_border" = "rgba(${lib.removePrefix "#" osConfig.mySystem.theme.colors.inactiveBorder}${osConfig.mySystem.theme.opacity.inactiveBorder})";
       layout = "dwindle";
       resize_on_border = true;
     };

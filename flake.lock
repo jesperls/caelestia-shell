@@ -347,11 +347,11 @@
         "quickshell": "quickshell_2"
       },
       "locked": {
-        "lastModified": 1771070168,
-        "narHash": "sha256-B3NkX+mA6uLmbCJVvNIjKyEGXpX+n6hKRuaACdem2l0=",
+        "lastModified": 1771080377,
+        "narHash": "sha256-ZkjD6jw0N/Io8VnZ602pqs0N13u7l2irGqiVCqflwZg=",
         "owner": "jesperls",
         "repo": "wallpaper-picker",
-        "rev": "0871b3ca9060e99e623c5705875b045e67a521c6",
+        "rev": "233bc2744ec9080163890e6946a4a20dd132d644",
         "type": "github"
       },
       "original": {

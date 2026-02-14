@@ -96,6 +96,52 @@ in
             default = "#08090d";
             description = "Shadow color used in CSS tweaks.";
           };
+
+          activeBorder = mkOption {
+            type = hexColor;
+            default = "#a869a8";
+            description = "Hyprland active window border color. Defaults to accent.";
+          };
+
+          inactiveBorder = mkOption {
+            type = hexColor;
+            default = "#191b21";
+            description = "Hyprland inactive window border color. Defaults to surface.";
+          };
+        };
+
+        opacity = {
+          activeBorder = mkOption {
+            type = types.strMatching "^[0-9a-fA-F]{2}$";
+            default = "ee";
+            description = "Hex alpha for active window border (00-ff).";
+          };
+
+          inactiveBorder = mkOption {
+            type = types.strMatching "^[0-9a-fA-F]{2}$";
+            default = "aa";
+            description = "Hex alpha for inactive window border (00-ff).";
+          };
+        };
+
+        borderGradient = {
+          enable = mkOption {
+            type = types.bool;
+            default = false;
+            description = "Whether to use a gradient for the active window border.";
+          };
+
+          secondColor = mkOption {
+            type = hexColor;
+            default = "#e3b17a";
+            description = "Second color in the border gradient. Defaults to accent2.";
+          };
+
+          angle = mkOption {
+            type = types.int;
+            default = 45;
+            description = "Gradient angle in degrees.";
+          };
         };
 
         gtk = {
@@ -198,6 +244,18 @@ in
             type = types.int;
             default = 11;
             description = "Default font size.";
+          };
+
+          packages = mkOption {
+            type = types.listOf types.package;
+            default = with pkgs; [
+              noto-fonts
+              noto-fonts-cjk-sans
+              noto-fonts-color-emoji
+              font-awesome
+              nerd-fonts.jetbrains-mono
+            ];
+            description = "Font packages to install. Override to match your font choices.";
           };
         };
       };
