@@ -281,11 +281,11 @@
         "quickshell": "quickshell_2"
       },
       "locked": {
-        "lastModified": 1771107195,
-        "narHash": "sha256-VUKDeCklMpwjtVWnfU/2UUbgkOdxzv83/YMw2G6j0T0=",
+        "lastModified": 1771108775,
+        "narHash": "sha256-UW9JpKpIYXN5/0C1raX4CHaPNC+1ys3lRs8CdvLZCqM=",
         "owner": "jesperls",
         "repo": "nix-quickshell-package-manager",
-        "rev": "83a14601e1505f978fc01dd236dad9f5e5641836",
+        "rev": "d9c16967d3fc354396e4f07fa7b5c6b29e597a55",
         "type": "github"
       },
       "original": {
