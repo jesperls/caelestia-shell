@@ -21,10 +21,6 @@
     "$mainMod, Tab, changegroupactive, f"
     "$mainMod SHIFT, Tab, changegroupactive, b"
 
-    # === Wallpaper ===
-    "$mainMod SHIFT, W, exec, wallpaper-manager"
-    "$mainMod CTRL, W, exec, wallpaper-manager pick"
-
     # === Focus Movement ===
     "$mainMod, left, movefocus, l"
     "$mainMod, right, movefocus, r"

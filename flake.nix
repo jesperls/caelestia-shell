@@ -16,12 +16,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wallpaper-picker = {
+      url = "github:jesperls/wallpaper-picker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Kernel
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     # Applications
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    deltatune.url = "github:jesperls/deltatune-linux";
+    deltatune.url = "github:ThatOneCalculator/deltatune-linux";
   };
 
   outputs =

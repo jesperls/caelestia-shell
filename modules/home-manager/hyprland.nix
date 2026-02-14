@@ -7,20 +7,6 @@
 }:
 
 let
-  wallpaperManager = pkgs.writeShellApplication {
-    name = "wallpaper-manager";
-    runtimeInputs = with pkgs; [
-      hyprpaper
-      hyprland
-      jq
-      findutils
-      coreutils
-      imagemagick
-      wofi
-    ];
-    text = builtins.readFile ./scripts/wallpaper-manager.sh;
-  };
-
   hyprSettings = import ./hyprland/settings.nix {
     inherit
       config
@@ -47,21 +33,7 @@ in
     }
   '';
 
-  xdg.configFile."wofi/wallpaper-picker.css".text = import ./hyprland/wallpaper-picker.nix {
-    inherit osConfig;
-  };
-
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      ipc = "on";
-      splash = false;
-    };
-  };
-
-  home.packages =
-    (with pkgs; [
-      hyprpicker
-    ])
-    ++ [ wallpaperManager ];
+  home.packages = with pkgs; [
+    hyprpicker
+  ];
 }

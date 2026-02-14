@@ -17,5 +17,6 @@
     ./obs.nix
     ./easyeffects.nix
     ./firefox.nix
+    ./wallpaper-picker.nix
   ];
 }
