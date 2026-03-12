@@ -6,7 +6,6 @@
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     caelestia-cli = {
@@ -30,6 +29,13 @@
       formatter = forAllSystems (pkgs: pkgs.alejandra);
 
       packages = forAllSystems (pkgs: rec {
+        caelestia-cli =
+          (inputs.caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default).overrideAttrs
+            (
+              final: prev: {
+                patchPhase = builtins.replaceStrings [ "qtct.conf" ] [ "qtengine.json" ] prev.patchPhase;
+              }
+            );
         caelestia-shell = pkgs.callPackage ./nix {
           rev = self.rev or self.dirtyRev;
           stdenv = pkgs.clangStdenv;
@@ -38,7 +44,7 @@
             withI3 = false;
           };
           app2unit = pkgs.callPackage ./nix/app2unit.nix { inherit pkgs; };
-          caelestia-cli = inputs.caelestia-cli.packages.${pkgs.stdenv.hostPlatform.system}.default;
+          inherit caelestia-cli;
         };
         with-cli = caelestia-shell.override { withCli = true; };
         debug = caelestia-shell.override { debug = true; };
