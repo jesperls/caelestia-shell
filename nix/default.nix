@@ -152,7 +152,7 @@ stdenv.mkDerivation {
     substituteInPlace assets/pam.d/fprint \
       --replace-fail pam_fprintd.so /run/current-system/sw/lib/security/pam_fprintd.so
     substituteInPlace shell.qml \
-      --replace-fail 'ShellRoot {' 'ShellRoot {  settings.watchFiles: false'
+      --replace-fail 'settings.watchFiles: true' 'settings.watchFiles: false'
   ''
   + lib.optionalString (themeColors != { }) ''
     substituteInPlace services/Colours.qml \
