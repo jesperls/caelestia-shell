@@ -32,6 +32,7 @@
   debug ? false,
   withCli ? false,
   extraRuntimeDeps ? [],
+  themeColors ? {},
 }: let
   version = "1.0.0";
 
@@ -146,12 +147,25 @@ in
 
     dontStrip = debug;
 
-    prePatch = ''
-      substituteInPlace assets/pam.d/fprint \
-        --replace-fail pam_fprintd.so /run/current-system/sw/lib/security/pam_fprintd.so
-      substituteInPlace assets/pam.d/howdy \
-        --replace-fail pam_howdy.so /run/current-system/sw/lib/security/pam_howdy.so
-    '';
+    prePatch =
+      ''
+        substituteInPlace assets/pam.d/fprint \
+          --replace-fail pam_fprintd.so /run/current-system/sw/lib/security/pam_fprintd.so
+        substituteInPlace assets/pam.d/howdy \
+          --replace-fail pam_howdy.so /run/current-system/sw/lib/security/pam_howdy.so
+        substituteInPlace shell.qml \
+          --replace-fail 'settings.watchFiles: true' 'settings.watchFiles: false'
+      ''
+      + lib.optionalString (themeColors != {}) ''
+        substituteInPlace services/Colours.qml \
+          --replace-fail 'onLoaded: root.load(text(), false)' '// onLoaded: root.load(text(), false)'
+      ''
+      + lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (
+          name: value: "substituteInPlace services/Colours.qml --replace-fail '@THEME_${name}@' '${value}' "
+        )
+        themeColors
+      );
 
     postInstall = ''
       makeWrapper ${quickshell}/bin/qs $out/bin/caelestia-shell \
@@ -163,6 +177,9 @@ in
 
       mkdir -p $out/lib
       ln -s ${extras}/lib/* $out/lib/
+
+      # Ensure wrap_term_launch.sh is executable
+      chmod 755 $out/share/caelestia-shell/assets/wrap_term_launch.sh
     '';
 
     passthru = {
