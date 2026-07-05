@@ -255,6 +255,18 @@ StyledRect {
                 fill: 1
             }
         }
+
+        // Tiled layout icon (shown when the workspace uses a non-default layout)
+        WrappedLoader {
+            name: "layout"
+            active: Config.bar.status.showLayout && Hypr.tiledLayout === "lua:centered"
+
+            sourceComponent: MaterialIcon {
+                animate: true
+                text: "view_column"
+                color: root.colour
+            }
+        }
     }
 
     component WrappedLoader: Loader {
