@@ -25,6 +25,7 @@ Singleton {
     readonly property HyprlandMonitor focusedMonitor: Hyprland.focusedMonitor
     readonly property int activeWsId: focusedWorkspace?.id ?? 1
     property string tiledLayout: "dwindle"
+    property bool tiledLayoutIsDefault: true
 
     readonly property HyprKeyboard keyboard: extras.devices.keyboards.find(kb => kb.main) ?? null
     readonly property bool capsLock: keyboard?.capsLock ?? false
@@ -133,8 +134,10 @@ Singleton {
 
             if (n === "custom") {
                 const data = event.data.split(",");
-                if (data[0] === "layout")
+                if (data[0] === "layout") {
                     root.tiledLayout = data[1];
+                    root.tiledLayoutIsDefault = data[2] !== "0";
+                }
                 return;
             }
 
